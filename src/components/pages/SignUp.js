@@ -257,8 +257,9 @@ function SignUp() {
                     onChange={handleInputChange}
                     className={errors.firstName ? 'error' : ''}
                     placeholder='Enter your first name'
+                    data-testid='signup-firstname-input'
                   />
-                  {errors.firstName && <span className='error-message'>{errors.firstName}</span>}
+                  {errors.firstName && <span className='error-message' data-testid='signup-firstname-error'>{errors.firstName}</span>}
                 </div>
 
                 <div className='form-group'>
@@ -271,8 +272,9 @@ function SignUp() {
                     onChange={handleInputChange}
                     className={errors.lastName ? 'error' : ''}
                     placeholder='Enter your last name'
+                    data-testid='signup-lastname-input'
                   />
-                  {errors.lastName && <span className='error-message'>{errors.lastName}</span>}
+                  {errors.lastName && <span className='error-message' data-testid='signup-lastname-error'>{errors.lastName}</span>}
                 </div>
               </div>
 
@@ -286,8 +288,9 @@ function SignUp() {
                   onChange={handleInputChange}
                   className={errors.email ? 'error' : ''}
                   placeholder='Enter your email address'
+                  data-testid='signup-email-input'
                 />
-                {errors.email && <span className='error-message'>{errors.email}</span>}
+                {errors.email && <span className='error-message' data-testid='signup-email-error'>{errors.email}</span>}
               </div>
 
               <div className='form-row'>
@@ -301,8 +304,9 @@ function SignUp() {
                     onChange={handleInputChange}
                     className={errors.password ? 'error' : ''}
                     placeholder='Create a password'
+                    data-testid='signup-password-input'
                   />
-                  {errors.password && <span className='error-message'>{errors.password}</span>}
+                  {errors.password && <span className='error-message' data-testid='signup-password-error'>{errors.password}</span>}
                 </div>
 
                 <div className='form-group'>
@@ -315,8 +319,9 @@ function SignUp() {
                     onChange={handleInputChange}
                     className={errors.confirmPassword ? 'error' : ''}
                     placeholder='Confirm your password'
+                    data-testid='signup-confirm-password-input'
                   />
-                  {errors.confirmPassword && <span className='error-message'>{errors.confirmPassword}</span>}
+                  {errors.confirmPassword && <span className='error-message' data-testid='signup-confirm-password-error'>{errors.confirmPassword}</span>}
                 </div>
               </div>
 
@@ -330,6 +335,7 @@ function SignUp() {
                     value={formData.company}
                     onChange={handleInputChange}
                     placeholder='Your company name (optional)'
+                    data-testid='signup-company-input'
                   />
                 </div>
 
@@ -341,13 +347,14 @@ function SignUp() {
                     value={formData.role}
                     onChange={handleInputChange}
                     className={errors.role ? 'error' : ''}
+                    data-testid='signup-role-select'
                   >
                     <option value=''>Select your role</option>
                     {roles.map(role => (
                       <option key={role} value={role}>{role}</option>
                     ))}
                   </select>
-                  {errors.role && <span className='error-message'>{errors.role}</span>}
+                  {errors.role && <span className='error-message' data-testid='signup-role-error'>{errors.role}</span>}
                 </div>
               </div>
 
@@ -360,6 +367,7 @@ function SignUp() {
                         type='checkbox'
                         checked={formData.interests.includes(interest)}
                         onChange={() => handleInterestChange(interest)}
+                        data-testid={`signup-interest-${interest.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                       />
                       <span className='signup-checkmark'></span>
                       {interest}
@@ -375,6 +383,7 @@ function SignUp() {
                     name='newsletter'
                     checked={formData.newsletter}
                     onChange={handleInputChange}
+                    data-testid='signup-newsletter-checkbox'
                   />
                   <span className='signup-checkmark'></span>
                   Subscribe to our newsletter for updates and tips
@@ -388,17 +397,19 @@ function SignUp() {
                     name='terms'
                     checked={formData.terms}
                     onChange={handleInputChange}
+                    data-testid='signup-terms-checkbox'
                   />
                   <span className='signup-checkmark'></span>
-                  I agree to the <a href='#' className='signup-link'>Terms of Service</a> and <a href='#' className='signup-link'>Privacy Policy</a> *
+                  I agree to the <a href='#' className='signup-link' data-testid='signup-terms-link'>Terms of Service</a> and <a href='#' className='signup-link' data-testid='signup-privacy-link'>Privacy Policy</a> *
                 </label>
-                {errors.terms && <span className='error-message'>{errors.terms}</span>}
+                {errors.terms && <span className='error-message' data-testid='signup-terms-error'>{errors.terms}</span>}
               </div>
 
               <button 
                 type='submit' 
                 className='signup-submit-btn'
                 disabled={isSubmitting}
+                data-testid='signup-submit-button'
               >
                 {isSubmitting ? (
                   <span className='signup-loading'>
@@ -416,6 +427,7 @@ function SignUp() {
                     type='button' 
                     className='signup-link-btn'
                     onClick={handleLoginRedirect}
+                    data-testid='signup-login-redirect-button'
                   >
                     Sign in here
                   </button>

@@ -153,8 +153,9 @@ function Login() {
                   onChange={handleInputChange}
                   className={errors.email ? 'error' : ''}
                   placeholder='Enter your email address'
+                  data-testid='login-email-input'
                 />
-                {errors.email && <span className='error-message'>{errors.email}</span>}
+                {errors.email && <span className='error-message' data-testid='login-email-error'>{errors.email}</span>}
               </div>
 
               <div className='form-group'>
@@ -167,8 +168,9 @@ function Login() {
                   onChange={handleInputChange}
                   className={errors.password ? 'error' : ''}
                   placeholder='Enter your password'
+                  data-testid='login-password-input'
                 />
-                {errors.password && <span className='error-message'>{errors.password}</span>}
+                {errors.password && <span className='error-message' data-testid='login-password-error'>{errors.password}</span>}
               </div>
 
               <div className='form-row'>
@@ -178,17 +180,18 @@ function Login() {
                     name='rememberMe'
                     checked={formData.rememberMe}
                     onChange={handleInputChange}
-                  />
-                  <span className='checkmark'></span>
+                    data-testid='login-remember-checkbox'
+                  /> 
                   Remember me
                 </label>
-                <a href='#' className='link forgot-password'>Forgot password?</a>
+                <a href='#' className='link forgot-password' data-testid='forgot-password-link'>Forgot password?</a>
               </div>
 
               <button 
                 type='submit' 
                 className='submit-btn'
                 disabled={isSubmitting}
+                data-testid='login-submit-button'
               >
                 {isSubmitting ? (
                   <span className='loading'>
@@ -205,11 +208,11 @@ function Login() {
               </div>
 
               <div className='social-login'>
-                <button type='button' className='social-btn google-btn'>
+                <button type='button' className='social-btn google-btn' data-testid='google-login-button'>
                   <span>🔗</span>
                   Continue with Google
                 </button>
-                <button type='button' className='social-btn github-btn'>
+                <button type='button' className='social-btn github-btn' data-testid='github-login-button'>
                   <span>🔗</span>
                   Continue with GitHub
                 </button>
@@ -222,6 +225,7 @@ function Login() {
                     type='button' 
                     className='link-btn'
                     onClick={handleSignUpRedirect}
+                    data-testid='signup-redirect-button'
                   >
                     Create one here
                   </button>

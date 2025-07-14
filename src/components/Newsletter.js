@@ -71,16 +71,16 @@ function Newsletter() {
             <div className='social-follow'>
               <p>Follow us on social media for daily updates:</p>
               <div className='social-links'>
-                <a href='#' className='social-link'>
+                <a href='#' className='social-link' data-testid='newsletter-social-facebook'>
                   <span>📘</span> Facebook
                 </a>
-                <a href='#' className='social-link'>
+                <a href='#' className='social-link' data-testid='newsletter-social-twitter'>
                   <span>🐦</span> Twitter
                 </a>
-                <a href='#' className='social-link'>
+                <a href='#' className='social-link' data-testid='newsletter-social-linkedin'>
                   <span>💼</span> LinkedIn
                 </a>
-                <a href='#' className='social-link'>
+                <a href='#' className='social-link' data-testid='newsletter-social-instagram'>
                   <span>📷</span> Instagram
                 </a>
               </div>
@@ -91,6 +91,7 @@ function Newsletter() {
                 setIsSubscribed(false);
                 setEmail('');
               }}
+              data-testid='newsletter-subscribe-another-button'
             >
               Subscribe Another Email
             </button>
@@ -136,11 +137,13 @@ function Newsletter() {
                   placeholder='Enter your email address'
                   className={error ? 'error' : ''}
                   disabled={isLoading}
+                  data-testid='newsletter-email-input'
                 />
                 <button 
                   type='submit' 
                   className='subscribe-btn'
                   disabled={isLoading}
+                  data-testid='newsletter-subscribe-button'
                 >
                   {isLoading ? (
                     <span className='loading'>
@@ -152,7 +155,7 @@ function Newsletter() {
                   )}
                 </button>
               </div>
-              {error && <span className='error-message'>{error}</span>}
+              {error && <span className='error-message' data-testid='newsletter-error-message'>{error}</span>}
             </form>
 
             <div className='newsletter-features'>

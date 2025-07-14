@@ -386,6 +386,7 @@ function Products() {
                 key={category}
                 className={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
                 onClick={() => setSelectedCategory(category)}
+                data-testid={`products-filter-${category}`}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
@@ -399,7 +400,7 @@ function Products() {
               <div className='product-image'>
                 <img src={product.image} alt={product.name} />
                 <div className='product-overlay'>
-                  <button className='quick-view-btn'>Quick View</button>
+                  <button className='quick-view-btn' data-testid={`products-quick-view-${product.id}`}>Quick View</button>
                 </div>
               </div>
               <div className='product-info'>
@@ -411,7 +412,7 @@ function Products() {
                 </div>
                 <div className='product-price'>
                   <span className='price'>${product.price}</span>
-                  <button className='add-to-cart-btn'>Add to Cart</button>
+                  <button className='add-to-cart-btn' data-testid={`products-add-to-cart-${product.id}`}>Add to Cart</button>
                 </div>
               </div>
             </div>

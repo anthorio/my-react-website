@@ -156,8 +156,8 @@ function Dashboard() {
             </div>
           </div>
           <div className='dashboard-actions'>
-            <button className='btn-primary'>New Project</button>
-            <button className='btn-secondary'>Settings</button>
+            <button className='btn-primary' data-testid='dashboard-new-project-button'>New Project</button>
+            <button className='btn-secondary' data-testid='dashboard-settings-button'>Settings</button>
           </div>
         </div>
 
@@ -165,18 +165,21 @@ function Dashboard() {
           <button 
             className={`nav-tab ${activeTab === 'overview' ? 'active' : ''}`}
             onClick={() => setActiveTab('overview')}
+            data-testid='dashboard-overview-tab'
           >
             Overview
           </button>
           <button 
             className={`nav-tab ${activeTab === 'projects' ? 'active' : ''}`}
             onClick={() => setActiveTab('projects')}
+            data-testid='dashboard-projects-tab'
           >
             Projects
           </button>
           <button 
             className={`nav-tab ${activeTab === 'notifications' ? 'active' : ''}`}
             onClick={() => setActiveTab('notifications')}
+            data-testid='dashboard-notifications-tab'
           >
             Notifications
             {notifications.filter(n => !n.read).length > 0 && (
@@ -188,6 +191,7 @@ function Dashboard() {
           <button 
             className={`nav-tab ${activeTab === 'profile' ? 'active' : ''}`}
             onClick={() => setActiveTab('profile')}
+            data-testid='dashboard-profile-tab'
           >
             Profile
           </button>
@@ -211,19 +215,19 @@ function Dashboard() {
               <div className='quick-actions'>
                 <h2>Quick Actions</h2>
                 <div className='action-buttons'>
-                  <button className='action-btn'>
+                  <button className='action-btn' data-testid='dashboard-start-new-project-button'>
                     <span>📝</span>
                     Start New Project
                   </button>
-                  <button className='action-btn'>
+                  <button className='action-btn' data-testid='dashboard-view-reports-button'>
                     <span>📊</span>
                     View Reports
                   </button>
-                  <button className='action-btn'>
+                  <button className='action-btn' data-testid='dashboard-invite-team-button'>
                     <span>👥</span>
                     Invite Team Member
                   </button>
-                  <button className='action-btn'>
+                  <button className='action-btn' data-testid='dashboard-contact-support-button'>
                     <span>💬</span>
                     Contact Support
                   </button>
@@ -263,7 +267,7 @@ function Dashboard() {
             <div className='projects-tab'>
               <div className='projects-header'>
                 <h2>Your Projects</h2>
-                <button className='btn-primary'>+ New Project</button>
+                <button className='btn-primary' data-testid='dashboard-new-project-tab-button'>+ New Project</button>
               </div>
               <div className='projects-list'>
                 {projects.map(project => (
@@ -306,6 +310,7 @@ function Dashboard() {
                   onClick={() => setNotifications(prev => 
                     prev.map(notif => ({ ...notif, read: true }))
                   )}
+                  data-testid='dashboard-mark-all-read-button'
                 >
                   Mark All as Read
                 </button>
@@ -337,7 +342,7 @@ function Dashboard() {
             <div className='profile-tab'>
               <div className='profile-header'>
                 <h2>Profile Information</h2>
-                <button className='btn-primary'>Edit Profile</button>
+                <button className='btn-primary' data-testid='dashboard-edit-profile-button'>Edit Profile</button>
               </div>
               <div className='profile-content'>
                 <div className='profile-section'>

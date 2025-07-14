@@ -20,8 +20,9 @@ function Footer() {
               name='email'
               type='email'
               placeholder='Your Email'
+              data-testid='footer-email-input'
             />
-            <Button buttonStyle='btn--outline'>Subscribe</Button>
+            <Button buttonStyle='btn--outline' data-testid='footer-subscribe-button'>Subscribe</Button>
           </form>
         </div>
       </section>
@@ -29,41 +30,41 @@ function Footer() {
         <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
             <h2>About Us</h2>
-            <Link to='/sign-up'>How it works</Link>
-            <Link to='/'>Testimonials</Link>
-            <Link to='/'>Careers</Link>
-            <Link to='/'>Investors</Link>
-            <Link to='/'>Terms of Service</Link>
+            <Link to='/sign-up' data-testid='footer-how-it-works'>How it works</Link>
+            <Link to='/' data-testid='footer-testimonials'>Testimonials</Link>
+            <Link to='/' data-testid='footer-careers'>Careers</Link>
+            <Link to='/' data-testid='footer-investors'>Investors</Link>
+            <Link to='/' data-testid='footer-terms'>Terms of Service</Link>
           </div>
           <div class='footer-link-items'>
             <h2>Contact Us</h2>
-            <Link to='/'>Contact</Link>
-            <Link to='/'>Support</Link>
-            <Link to='/'>Destinations</Link>
-            <Link to='/'>Sponsorships</Link>
+            <Link to='/' data-testid='footer-contact'>Contact</Link>
+            <Link to='/' data-testid='footer-support'>Support</Link>
+            <Link to='/' data-testid='footer-destinations'>Destinations</Link>
+            <Link to='/' data-testid='footer-sponsorships'>Sponsorships</Link>
           </div>
         </div>
         <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
             <h2>Videos</h2>
-            <Link to='/'>Submit Video</Link>
-            <Link to='/'>Ambassadors</Link>
-            <Link to='/'>Agency</Link>
-            <Link to='/'>Influencer</Link>
+            <Link to='/' data-testid='footer-submit-video'>Submit Video</Link>
+            <Link to='/' data-testid='footer-ambassadors'>Ambassadors</Link>
+            <Link to='/' data-testid='footer-agency'>Agency</Link>
+            <Link to='/' data-testid='footer-influencer'>Influencer</Link>
           </div>
           <div class='footer-link-items'>
             <h2>Social Media</h2>
-            <Link to='/'>Instagram</Link>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>Youtube</Link>
-            <Link to='/'>Twitter</Link>
+            <Link to='/' data-testid='footer-instagram-link'>Instagram</Link>
+            <Link to='/' data-testid='footer-facebook-link'>Facebook</Link>
+            <Link to='/' data-testid='footer-youtube-link'>Youtube</Link>
+            <Link to='/' data-testid='footer-twitter-link'>Twitter</Link>
           </div>
         </div>
       </div>
       <section class='social-media'>
         <div class='social-media-wrap'>
           <div class='footer-logo'>
-            <Link to='/' className='social-logo'>
+            <Link to='/' className='social-logo' data-testid='footer-logo'>
               TRVL
               <i class='fab fa-typo3' />
             </Link>
@@ -75,6 +76,7 @@ function Footer() {
               to='/'
               target='_blank'
               aria-label='Facebook'
+              data-testid='footer-social-facebook'
             >
               <i class='fab fa-facebook-f' />
             </Link>
@@ -83,6 +85,7 @@ function Footer() {
               to='/'
               target='_blank'
               aria-label='Instagram'
+              data-testid='footer-social-instagram'
             >
               <i class='fab fa-instagram' />
             </Link>
@@ -91,6 +94,7 @@ function Footer() {
               to='/'
               target='_blank'
               aria-label='Youtube'
+              data-testid='footer-social-youtube'
             >
               <i class='fab fa-youtube' />
             </Link>
@@ -99,6 +103,7 @@ function Footer() {
               to='/'
               target='_blank'
               aria-label='Twitter'
+              data-testid='footer-social-twitter'
             >
               <i class='fab fa-twitter' />
             </Link>
@@ -107,6 +112,7 @@ function Footer() {
               to='/'
               target='_blank'
               aria-label='LinkedIn'
+              data-testid='footer-social-linkedin'
             >
               <i class='fab fa-linkedin' />
             </Link>

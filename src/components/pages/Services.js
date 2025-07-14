@@ -200,6 +200,7 @@ function Services() {
               <button 
                 className='service-toggle-btn'
                 onClick={() => toggleService(service.id)}
+                data-testid={`service-toggle-${service.id}`}
               >
                 {activeService === service.id ? 'Hide Details' : 'View Details'}
               </button>
@@ -221,6 +222,7 @@ function Services() {
                   <button 
                     className='get-quote-btn'
                     onClick={() => handleGetQuote(service)}
+                    data-testid={`service-get-quote-${service.id}`}
                   >
                     Get Quote
                   </button>
@@ -281,8 +283,8 @@ function Services() {
           <h2>Ready to Start Your Project?</h2>
           <p>Let's discuss how we can help bring your vision to life</p>
           <div className='cta-buttons'>
-            <button className='cta-primary'>Get Free Consultation</button>
-            <button className='cta-secondary'>View Portfolio</button>
+            <button className='cta-primary' data-testid='services-consultation-button'>Get Free Consultation</button>
+            <button className='cta-secondary' data-testid='services-portfolio-button'>View Portfolio</button>
           </div>
         </div>
 
@@ -290,7 +292,7 @@ function Services() {
         {showQuotePopup && (
           <div className='popup-overlay' onClick={closePopup}>
             <div className='popup-content' onClick={(e) => e.stopPropagation()}>
-              <button className='popup-close' onClick={closePopup}>×</button>
+              <button className='popup-close' onClick={closePopup} data-testid='services-popup-close-button'>×</button>
               <div className='popup-header'>
                 <div className='popup-icon'>{selectedService?.icon}</div>
                 <h3>Request Quote</h3>
@@ -318,10 +320,10 @@ function Services() {
                 </div>
               </div>
               <div className='popup-actions'>
-                <button className='popup-btn popup-btn-accept' onClick={handleAcceptQuote}>
+                <button className='popup-btn popup-btn-accept' onClick={handleAcceptQuote} data-testid='services-quote-accept-button'>
                   Yes, Send Quote Request
                 </button>
-                <button className='popup-btn popup-btn-cancel' onClick={handleCancelQuote}>
+                <button className='popup-btn popup-btn-cancel' onClick={handleCancelQuote} data-testid='services-quote-cancel-button'>
                   Cancel
                 </button>
               </div>

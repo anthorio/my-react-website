@@ -96,7 +96,7 @@ function Testimonials() {
         </div>
 
         <div className='testimonials-carousel'>
-          <button className='carousel-btn prev-btn' onClick={prevSlide}>
+          <button className='carousel-btn prev-btn' onClick={prevSlide} data-testid='testimonials-prev-button'>
             ‹
           </button>
 
@@ -131,7 +131,7 @@ function Testimonials() {
             </div>
           </div>
 
-          <button className='carousel-btn next-btn' onClick={nextSlide}>
+          <button className='carousel-btn next-btn' onClick={nextSlide} data-testid='testimonials-next-button'>
             ›
           </button>
         </div>
@@ -142,6 +142,7 @@ function Testimonials() {
               key={index}
               className={`dot ${index === currentSlide ? 'active' : ''}`}
               onClick={() => goToSlide(index)}
+              data-testid={`testimonials-dot-${index}`}
             />
           ))}
         </div>

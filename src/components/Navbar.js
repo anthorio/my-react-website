@@ -67,16 +67,16 @@ function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+          <Link to='/' className='navbar-logo' onClick={closeMobileMenu} data-testid='navbar-logo'>
             TRVL
             <i className='fab fa-typo3' />
           </Link>
-          <div className='menu-icon' onClick={handleClick}>
+          <div className='menu-icon' onClick={handleClick} data-testid='mobile-menu-toggle'>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+              <Link to='/' className='nav-links' onClick={closeMobileMenu} data-testid='nav-home-link'>
                 Home
               </Link>
             </li>
@@ -85,6 +85,7 @@ function Navbar() {
                 to='/services'
                 className='nav-links'
                 onClick={closeMobileMenu}
+                data-testid='nav-services-link'
               >
                 Services
               </Link>
@@ -94,6 +95,7 @@ function Navbar() {
                 to='/products'
                 className='nav-links'
                 onClick={closeMobileMenu}
+                data-testid='nav-products-link'
               >
                 Products
               </Link>
@@ -105,6 +107,7 @@ function Navbar() {
                   to='/dashboard'
                   className='nav-links'
                   onClick={closeMobileMenu}
+                  data-testid='nav-dashboard-link'
                 >
                   Dashboard
                 </Link>
@@ -117,6 +120,7 @@ function Navbar() {
                   to='/sign-up'
                   className='nav-links-mobile'
                   onClick={closeMobileMenu}
+                  data-testid='nav-signup-mobile-link'
                 >
                   Sign Up
                 </Link>
@@ -128,6 +132,7 @@ function Navbar() {
                 <button
                   className='nav-links-mobile logout-mobile'
                   onClick={handleLogout}
+                  data-testid='nav-logout-mobile-button'
                 >
                   Logout
                 </button>
@@ -137,16 +142,16 @@ function Navbar() {
           
           {button && !isLoggedIn && (
             <div className='auth-buttons'>
-              <Button buttonStyle='btn--outline--alt' onClick={handleLogin}>
+              <Button buttonStyle='btn--outline--alt' onClick={handleLogin} data-testid='navbar-login-button'>
                 LOGIN
               </Button>
-              <Button buttonStyle='btn--outline'>SIGN UP</Button>
+              <Button buttonStyle='btn--outline' data-testid='navbar-signup-button'>SIGN UP</Button>
             </div>
           )}
           
           {button && isLoggedIn && (
             <div className='user-menu'>
-              <button className='user-profile' onClick={handleDashboard}>
+              <button className='user-profile' onClick={handleDashboard} data-testid='navbar-user-profile-button'>
                 <span className='user-avatar'>
                   {user?.firstName?.charAt(0) || 'U'}
                 </span>
@@ -154,7 +159,7 @@ function Navbar() {
                   {user?.firstName || 'User'}
                 </span>
               </button>
-              <button className='logout-btn' onClick={handleLogout}>
+              <button className='logout-btn' onClick={handleLogout} data-testid='navbar-logout-button'>
                 Logout
               </button>
             </div>
