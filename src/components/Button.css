@@ -24,6 +24,20 @@
   transition: all 0.3s ease-out;
 }
 
+.btn--outline--alt {
+  background-color: transparent;
+  color: #fff;
+  padding: 8px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease-out;
+  margin-right: 10px;
+}
+
+.btn--outline--alt:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
 .btn--medium {
   padding: 8px 20px;
   font-size: 18px;
