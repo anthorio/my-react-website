@@ -105,28 +105,28 @@ function Login() {
             <h3>Access Your Dashboard</h3>
             <div className='benefits-list'>
               <div className='benefit-item'>
-                <span className='benefit-icon'>📊</span>
+                <span className='benefit-icon' role="img" aria-label="Chart">📊</span>
                 <div>
                   <h4>Project Management</h4>
                   <p>Track your projects and monitor progress in real-time</p>
                 </div>
               </div>
               <div className='benefit-item'>
-                <span className='benefit-icon'>🔔</span>
+                <span className='benefit-icon' role="img" aria-label="Bell">🔔</span>
                 <div>
                   <h4>Notifications</h4>
                   <p>Stay updated with important alerts and messages</p>
                 </div>
               </div>
               <div className='benefit-item'>
-                <span className='benefit-icon'>⚙️</span>
+                <span className='benefit-icon' role="img" aria-label="Settings">⚙️</span>
                 <div>
                   <h4>Settings & Profile</h4>
                   <p>Customize your experience and manage your preferences</p>
                 </div>
               </div>
               <div className='benefit-item'>
-                <span className='benefit-icon'>📈</span>
+                <span className='benefit-icon' role="img" aria-label="Analytics">📈</span>
                 <div>
                   <h4>Analytics</h4>
                   <p>View detailed insights and performance metrics</p>
@@ -184,7 +184,14 @@ function Login() {
                   /> 
                   Remember me
                 </label>
-                <a href='#' className='link forgot-password' data-testid='forgot-password-link'>Forgot password?</a>
+                <button 
+                  type='button'
+                  className='link forgot-password' 
+                  data-testid='forgot-password-link'
+                  onClick={() => console.log('Forgot password clicked')}
+                >
+                  Forgot password?
+                </button>
               </div>
 
               <button 
@@ -209,11 +216,11 @@ function Login() {
 
               <div className='social-login'>
                 <button type='button' className='social-btn google-btn' data-testid='google-login-button'>
-                  <span>🔗</span>
+                  <span role="img" aria-label="Link">🔗</span>
                   Continue with Google
                 </button>
                 <button type='button' className='social-btn github-btn' data-testid='github-login-button'>
-                  <span>🔗</span>
+                  <span role="img" aria-label="Link">🔗</span>
                   Continue with GitHub
                 </button>
               </div>

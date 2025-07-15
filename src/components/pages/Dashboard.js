@@ -216,19 +216,19 @@ function Dashboard() {
                 <h2>Quick Actions</h2>
                 <div className='action-buttons'>
                   <button className='action-btn' data-testid='dashboard-start-new-project-button'>
-                    <span>📝</span>
+                    <span role="img" aria-label="Document">📝</span>
                     Start New Project
                   </button>
                   <button className='action-btn' data-testid='dashboard-view-reports-button'>
-                    <span>📊</span>
+                    <span role="img" aria-label="Chart">📊</span>
                     View Reports
                   </button>
                   <button className='action-btn' data-testid='dashboard-invite-team-button'>
-                    <span>👥</span>
+                    <span role="img" aria-label="People">👥</span>
                     Invite Team Member
                   </button>
                   <button className='action-btn' data-testid='dashboard-contact-support-button'>
-                    <span>💬</span>
+                    <span role="img" aria-label="Chat">💬</span>
                     Contact Support
                   </button>
                 </div>
@@ -238,21 +238,21 @@ function Dashboard() {
                 <h2>Recent Activity</h2>
                 <div className='activity-list'>
                   <div className='activity-item'>
-                    <span className='activity-icon'>✅</span>
+                    <span className='activity-icon' role="img" aria-label="Checkmark">✅</span>
                     <div className='activity-info'>
                       <p><strong>Brand Redesign</strong> project completed</p>
                       <span className='activity-time'>2 days ago</span>
                     </div>
                   </div>
                   <div className='activity-item'>
-                    <span className='activity-icon'>📊</span>
+                    <span className='activity-icon' role="img" aria-label="Chart">📊</span>
                     <div className='activity-info'>
                       <p>Progress update on <strong>E-commerce Website</strong></p>
                       <span className='activity-time'>5 days ago</span>
                     </div>
                   </div>
                   <div className='activity-item'>
-                    <span className='activity-icon'>👥</span>
+                    <span className='activity-icon' role="img" aria-label="People">👥</span>
                     <div className='activity-info'>
                       <p>New team member added to project</p>
                       <span className='activity-time'>1 week ago</span>

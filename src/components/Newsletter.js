@@ -71,18 +71,18 @@ function Newsletter() {
             <div className='social-follow'>
               <p>Follow us on social media for daily updates:</p>
               <div className='social-links'>
-                <a href='#' className='social-link' data-testid='newsletter-social-facebook'>
-                  <span>📘</span> Facebook
-                </a>
-                <a href='#' className='social-link' data-testid='newsletter-social-twitter'>
-                  <span>🐦</span> Twitter
-                </a>
-                <a href='#' className='social-link' data-testid='newsletter-social-linkedin'>
-                  <span>💼</span> LinkedIn
-                </a>
-                <a href='#' className='social-link' data-testid='newsletter-social-instagram'>
-                  <span>📷</span> Instagram
-                </a>
+                <button type='button' className='social-link' data-testid='newsletter-social-facebook' onClick={() => console.log('Facebook clicked')}>
+                  <span role="img" aria-label="Facebook">📘</span> Facebook
+                </button>
+                <button type='button' className='social-link' data-testid='newsletter-social-twitter' onClick={() => console.log('Twitter clicked')}>
+                  <span role="img" aria-label="Twitter">🐦</span> Twitter
+                </button>
+                <button type='button' className='social-link' data-testid='newsletter-social-linkedin' onClick={() => console.log('LinkedIn clicked')}>
+                  <span role="img" aria-label="LinkedIn">💼</span> LinkedIn
+                </button>
+                <button type='button' className='social-link' data-testid='newsletter-social-instagram' onClick={() => console.log('Instagram clicked')}>
+                  <span role="img" aria-label="Instagram">📷</span> Instagram
+                </button>
               </div>
             </div>
             <button 

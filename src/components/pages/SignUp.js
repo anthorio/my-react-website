@@ -159,7 +159,9 @@ function SignUp() {
     return (
       <div className='signup-container'>
         <div className='success-message'>
-          <div className='success-icon'>✅</div>
+          <div className='success-icon'>
+            <span role="img" aria-label="Success">✅</span>
+          </div>
           <h2>Welcome aboard!</h2>
           <p>Your account has been created successfully. We've sent a confirmation email to {formData.email}</p>
           <div className='success-actions'>
@@ -214,28 +216,28 @@ function SignUp() {
             <h3>Why Join Us?</h3>
             <div className='benefits-list'>
               <div className='signup-benefit-item'>
-                <span className='signup-benefit-icon'>🚀</span>
+                <span className='signup-benefit-icon' role="img" aria-label="Rocket">🚀</span>
                 <div>
                   <h4>Fast Project Delivery</h4>
                   <p>Get your projects completed on time with our agile methodology</p>
                 </div>
               </div>
               <div className='signup-benefit-item'>
-                <span className='signup-benefit-icon'>💡</span>
+                <span className='signup-benefit-icon' role="img" aria-label="Light bulb">💡</span>
                 <div>
                   <h4>Expert Consultation</h4>
                   <p>Access to industry experts and personalized guidance</p>
                 </div>
               </div>
               <div className='signup-benefit-item'>
-                <span className='signup-benefit-icon'>🔒</span>
+                <span className='signup-benefit-icon' role="img" aria-label="Lock">🔒</span>
                 <div>
                   <h4>Secure & Reliable</h4>
                   <p>Enterprise-grade security and 99.9% uptime guarantee</p>
                 </div>
               </div>
               <div className='signup-benefit-item'>
-                <span className='signup-benefit-icon'>🎯</span>
+                <span className='signup-benefit-icon' role="img" aria-label="Target">🎯</span>
                 <div>
                   <h4>Tailored Solutions</h4>
                   <p>Custom solutions designed specifically for your business needs</p>
@@ -400,7 +402,7 @@ function SignUp() {
                     data-testid='signup-terms-checkbox'
                   />
                   <span className='signup-checkmark'></span>
-                  I agree to the <a href='#' className='signup-link' data-testid='signup-terms-link'>Terms of Service</a> and <a href='#' className='signup-link' data-testid='signup-privacy-link'>Privacy Policy</a> *
+                  I agree to the <button type='button' className='signup-link' data-testid='signup-terms-link' onClick={() => console.log('Terms clicked')}>Terms of Service</button> and <button type='button' className='signup-link' data-testid='signup-privacy-link' onClick={() => console.log('Privacy clicked')}>Privacy Policy</button> *
                 </label>
                 {errors.terms && <span className='error-message' data-testid='signup-terms-error'>{errors.terms}</span>}
               </div>
