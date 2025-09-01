@@ -27,6 +27,10 @@ git push origin main
 3. Deberías ver que se ejecutó el workflow "CI - Build and Test"
 4. Si es la primera vez, puede fallar porque no tienes configurado branch protection aún
 
+**⚠️ Si ves errores sobre "lock file not found":**
+- Es normal en el primer push si no tienes `package-lock.json`
+- El workflow ya está configurado para usar `npm ci` (más rápido y seguro)
+
 ### Paso 3: Configurar Branch Protection (¡IMPORTANTE!)
 
 1. Ve a **Settings** → **Branches** en tu repositorio de GitHub
@@ -125,8 +129,13 @@ npm run playwright:show-report
 - **Causa:** Branch protection funcionando correctamente
 - **Solución:** Asegúrate de que todos los checks estén ✅ en verde
 
-### ❌ Build falla por "legacy OpenSSL"
-- **Ya solucionado:** Los workflows usan `NODE_OPTIONS=--openssl-legacy-provider`
+### ❌ "Dependencies lock file is not found"
+- **Causa:** Falta el archivo `package-lock.json` 
+- **Solución:** Ya solucionado - el `package-lock.json` se incluye en el commit
+
+### ❌ "No files were found with the provided path: playwright-report/"
+- **Causa:** Normal cuando los tests pasan (no se genera reporte de error)
+- **Solución:** Ya configurado para ignorar archivos faltantes
 
 ## 🎉 ¡Listo!
 
