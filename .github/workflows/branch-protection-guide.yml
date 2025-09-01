@@ -1,0 +1,36 @@
+name: Branch Protection
+
+# Este workflow ayuda a configurar las reglas de protección de rama
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to protect'
+        required: true
+        default: 'main'
+        type: string
+
+jobs:
+  branch-protection-info:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Branch Protection Guidelines
+      run: |
+        echo "🔒 Para configurar protección de rama en GitHub:"
+        echo ""
+        echo "1. Ve a Settings > Branches en tu repositorio"
+        echo "2. Haz clic en 'Add rule' para ${{ inputs.branch }}"
+        echo "3. Configura las siguientes opciones:"
+        echo "   ✅ Require a pull request before merging"
+        echo "   ✅ Require status checks to pass before merging"
+        echo "   ✅ Require branches to be up to date before merging"
+        echo "   ✅ Status checks requeridos:"
+        echo "      - build-and-test (ubuntu-latest, 18.x)"
+        echo "      - build-and-test (ubuntu-latest, 20.x)"
+        echo "   ✅ Restrict pushes that create files that match a path"
+        echo "   ✅ Require linear history (opcional)"
+        echo "   ✅ Include administrators"
+        echo ""
+        echo "4. Guarda los cambios"
+        echo ""
+        echo "🚀 Una vez configurado, las PRs requerirán que pasen todos los checks antes del merge!"

@@ -1,0 +1,88 @@
+name: Validate CI Setup
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/**'
+      - 'package.json'
+      - 'playwright.config.ts'
+
+jobs:
+  validate-setup:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Validate package.json
+      run: |
+        echo "🔍 Validating package.json..."
+        if ! command -v jq &> /dev/null; then
+          sudo apt-get update && sudo apt-get install -y jq
+        fi
+        
+        # Verificar que existan los scripts necesarios
+        if ! jq -e '.scripts.build' package.json > /dev/null; then
+          echo "❌ Script 'build' no encontrado en package.json"
+          exit 1
+        fi
+        
+        if ! jq -e '.scripts.start' package.json > /dev/null; then
+          echo "❌ Script 'start' no encontrado en package.json"
+          exit 1
+        fi
+        
+        # Verificar dependencias críticas
+        if ! jq -e '.devDependencies["@playwright/test"]' package.json > /dev/null; then
+          echo "❌ Playwright no está instalado"
+          exit 1
+        fi
+        
+        if ! jq -e '.devDependencies["wait-on"]' package.json > /dev/null; then
+          echo "❌ wait-on no está instalado"
+          exit 1
+        fi
+        
+        echo "✅ package.json válido"
+    
+    - name: Validate Playwright config
+      run: |
+        echo "🔍 Validating Playwright configuration..."
+        if [ ! -f "playwright.config.ts" ]; then
+          echo "❌ playwright.config.ts no encontrado"
+          exit 1
+        fi
+        echo "✅ Playwright config existe"
+    
+    - name: Check GitHub workflows
+      run: |
+        echo "🔍 Validating GitHub workflows..."
+        if [ ! -f ".github/workflows/ci.yml" ]; then
+          echo "❌ CI workflow no encontrado"
+          exit 1
+        fi
+        
+        # Verificar que el workflow tenga los jobs necesarios
+        if ! grep -q "build-and-test:" .github/workflows/ci.yml; then
+          echo "❌ Job 'build-and-test' no encontrado en CI workflow"
+          exit 1
+        fi
+        
+        echo "✅ GitHub workflows válidos"
+    
+    - name: Setup summary
+      run: |
+        echo "## ✅ Configuración de CI Validada" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Componentes verificados:" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ package.json con scripts requeridos" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Dependencias de Playwright instaladas" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ wait-on para sincronización de servidor" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Configuración de Playwright presente" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Workflow de CI configurado correctamente" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Próximos pasos:" >> $GITHUB_STEP_SUMMARY
+        echo "1. 🔒 Configurar Branch Protection Rules en Settings > Branches" >> $GITHUB_STEP_SUMMARY
+        echo "2. 🧪 Crear una PR de prueba para validar el flujo" >> $GITHUB_STEP_SUMMARY
+        echo "3. 📊 Verificar que los status checks aparezcan correctamente" >> $GITHUB_STEP_SUMMARY

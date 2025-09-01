@@ -16,7 +16,8 @@
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.54.1",
     "@types/node": "^24.0.13",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "wait-on": "^8.0.4"
   },
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
@@ -31,7 +32,10 @@
     "playwright:show-report": "playwright show-report",
     "playwright:report:open": "playwright show-report --host 0.0.0.0 --port 9323",
     "playwright:report:generate": "playwright test --reporter=html",
-    "playwright:report:serve": "npx http-server playwright-report -p 8080 -o"
+    "playwright:report:serve": "npx http-server playwright-report -p 8080 -o",
+    "ci:build": "npm ci && npm run build",
+    "ci:test": "npm start & npx wait-on http://localhost:3000 && npx playwright test",
+    "ci:local": "npm run ci:build && npm run ci:test"
   },
   "keywords": [
     "react",
