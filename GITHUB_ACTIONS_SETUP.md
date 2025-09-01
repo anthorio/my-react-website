@@ -129,6 +129,10 @@ npm run playwright:show-report
 - **Causa:** Branch protection funcionando correctamente
 - **Solución:** Asegúrate de que todos los checks estén ✅ en verde
 
+### ❌ "Some specified paths were not resolved, unable to cache dependencies"
+- **Causa:** Problemas con el cache automático de npm en GitHub Actions
+- **Solución:** Ya solucionado - removimos el cache automático para mayor estabilidad
+
 ### ❌ "Dependencies lock file is not found"
 - **Causa:** Falta el archivo `package-lock.json` 
 - **Solución:** Ya solucionado - el `package-lock.json` se incluye en el commit
