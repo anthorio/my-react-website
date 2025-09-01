@@ -20,13 +20,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
     
-    # 2. Configurar Node.js
+    # 2. Configurar Node.js (sin cache para evitar problemas)
     - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: 'package-lock.json'
     
     # 3. Instalar dependencias
     - name: Install dependencies
