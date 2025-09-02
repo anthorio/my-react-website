@@ -1,0 +1,96 @@
+name: 🧪 Playwright Tests
+
+# Se ejecuta SOLO en Pull Requests hacia main
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Checkout del código
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    # 2. Configurar Node.js 20.x
+    - name: Setup Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    
+    # 3. Instalar dependencias
+    - name: Install dependencies
+      run: npm ci
+    
+    # 4. Instalar navegadores de Playwright
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    
+    # 5. Ejecutar tests de Playwright
+    - name: Run Playwright Tests
+      run: |
+        # Iniciar el servidor en background
+        npm start &
+        # Esperar a que el servidor esté listo
+        npx wait-on http://localhost:3000 --timeout 60000
+        # Ejecutar los tests
+        npx playwright test
+      env:
+        NODE_OPTIONS: --openssl-legacy-provider
+    
+    # 6. Subir reporte HTML de Playwright (siempre)
+    - name: Upload Playwright HTML Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+        if-no-files-found: ignore
+    
+    # 7. Subir capturas y videos si hay fallos
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: test-results
+        path: test-results/
+        retention-days: 30
+        if-no-files-found: ignore
+    
+    # 8. Comentar en la PR con enlace al reporte
+    - name: Comment PR with report link
+      uses: actions/github-script@v7
+      if: always()
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Verificar si existe el reporte
+          const reportExists = fs.existsSync('playwright-report/index.html');
+          
+          if (reportExists) {
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🧪 Playwright Test Results
+              
+              📊 **Test report available**: Download the \`playwright-report\` artifact from this workflow run to view detailed results.
+              
+              📁 **Files included:**
+              - HTML report with test details
+              - Screenshots of failures
+              - Videos of test runs
+              - Trace files for debugging
+              
+              💡 **To view the report**: 
+              1. Download the artifact
+              2. Extract the files
+              3. Open \`index.html\` in your browser
+              `
+            });
+          }

@@ -1,0 +1,53 @@
+name: 🔨 Build Check
+
+# Se ejecuta SOLO en Pull Requests hacia main
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Checkout del código
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    # 2. Configurar Node.js 20.x
+    - name: Setup Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    
+    # 3. Instalar dependencias
+    - name: Install dependencies
+      run: npm ci
+    
+    # 4. Hacer el build de la aplicación
+    - name: Build application
+      run: npm run build
+      env:
+        NODE_OPTIONS: --openssl-legacy-provider
+    
+    # 5. Verificar que los archivos de build se generaron correctamente
+    - name: Check build artifacts
+      run: |
+        if [ ! -d "build" ]; then
+          echo "❌ Build directory not found"
+          exit 1
+        fi
+        if [ ! -f "build/index.html" ]; then
+          echo "❌ index.html not found in build directory"
+          exit 1
+        fi
+        echo "✅ Build artifacts verified successfully"
+        ls -la build/
+    
+    # 6. Subir los archivos de build como artifacts
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-files
+        path: build/
+        retention-days: 7
