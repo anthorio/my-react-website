@@ -46,5 +46,6 @@ yarn-error.log*
 Thumbs.db
 
 # Package managers lock files
-package-lock.json
+# Comentamos package-lock.json para permitir CI/CD
+# package-lock.json
 yarn.lock
