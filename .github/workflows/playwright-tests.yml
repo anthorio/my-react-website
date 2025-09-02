@@ -5,12 +5,6 @@ on:
   pull_request:
     branches: [ main ]
 
-# Permisos necesarios para comentar en PRs
-permissions:
-  issues: write
-  pull-requests: write
-  contents: read
-
 jobs:
   playwright-tests:
     runs-on: ubuntu-latest
@@ -66,49 +60,29 @@ jobs:
         retention-days: 30
         if-no-files-found: ignore
     
-    # 8. Comentar en la PR con enlace al reporte
-    - name: Comment PR with report link
-      uses: actions/github-script@v7
+    # 8. Mostrar resumen en el log del workflow
+    - name: Test Summary
       if: always()
-      with:
-        script: |
-          const fs = require('fs');
-          
-          // Verificar si existe el reporte
-          const reportExists = fs.existsSync('playwright-report/index.html');
-          
-          let statusIcon = '✅';
-          let statusText = 'Tests passed successfully!';
-          
-          if (context.payload.workflow_run && context.payload.workflow_run.conclusion === 'failure') {
-            statusIcon = '❌';
-            statusText = 'Some tests failed. Check the details below.';
-          }
-          
-          const commentBody = `## 🧪 Playwright Test Results ${statusIcon}
-          
-          ${statusText}
-          
-          📊 **Test report available**: Download the \`playwright-report\` artifact from this workflow run to view detailed results.
-          
-          📁 **Files included:**
-          - HTML report with test details and timeline
-          - Screenshots of failures (if any)
-          - Videos of test runs
-          - Trace files for debugging
-          
-          💡 **To view the report**: 
-          1. Go to the "Actions" tab above
-          2. Click on this workflow run
-          3. Download the \`playwright-report\` artifact
-          4. Extract the files and open \`index.html\` in your browser
-          
-          📈 **Quick access**: The report includes accessibility checks (WCAG 2.2), login flows, and product page functionality tests.
-          `;
-          
-          await github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: commentBody
-          });
+      run: |
+        echo "🧪 PLAYWRIGHT TEST SUMMARY"
+        echo "========================="
+        echo ""
+        if [ -d "playwright-report" ]; then
+          echo "✅ Test report generated successfully!"
+          echo "📊 Download the 'playwright-report' artifact to view detailed results"
+          echo ""
+          echo "📁 Report includes:"
+          echo "  - HTML report with test details and timeline"
+          echo "  - Screenshots of failures (if any)"
+          echo "  - Videos of test runs"
+          echo "  - Trace files for debugging"
+          echo ""
+          echo "💡 To view the report:"
+          echo "  1. Go to Actions tab → This workflow run"
+          echo "  2. Download 'playwright-report' artifact"
+          echo "  3. Extract and open index.html in browser"
+        else
+          echo "⚠️ No test report found"
+        fi
+        echo ""
+        echo "🎯 Tests covered: WCAG 2.2 accessibility, login flows, product functionality"
