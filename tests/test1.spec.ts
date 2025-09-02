@@ -2,7 +2,7 @@ import { test, expect } from '../test-base';
 
 test.describe('Test de Login - Flujo Completo', () => {
   test('debe permitir login y redireccionar al dashboard', async ({ page }) => {
-    // ✅ Ya estamos en localhost:3000 gracias a test-base.ts
+    // ✅ Ya estamos en localhost:3000 gracias a test-base.ts.
     
     // 1. Hacer clic en el botón LOGIN en la navbar
     const loginButton = page.locator('[data-testid="navbar-login-button"]');
