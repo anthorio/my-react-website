@@ -25,7 +25,7 @@ test.describe('Test de Login - Flujo Completo', () => {
     await submitButton.click();
     
     // 5. Verificar redirección al dashboard
-    await expect(page).toHaveURL('http://localhost:3000/dashboard');
+    await expect(page).toHaveURL('http://localhost:3000/dashboard!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     
     // 6. Confirmar que aparece el botón de perfil de usuario en la navegación
     const userProfileButton = page.locator('[data-testid="navbar-user-profile-button"]');
