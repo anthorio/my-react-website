@@ -9,6 +9,7 @@ test.describe('Test de Login - Flujo Completo', () => {
     await expect(loginButton).toBeVisible();
     await loginButton.click();
     
+    
     // 2. Introducir email en el campo correspondiente
     const emailInput = page.locator('[data-testid="login-email-input"]');
     await expect(emailInput).toBeVisible();
